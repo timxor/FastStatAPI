@@ -7,18 +7,19 @@ FastStatAPI
 
 ```
 unzip FastStatAPI.zip -d FastStatAPI
+
 spring init -a FastStatAPI -l java --build maven FastStatAPI
 
 cd FastStatAPI
-mvn clean package
 
-ls -lb target/*.jar
+mvn clean package
 ```
 
 
 ## running the app
 
 ```
+ls -lb target/*.jar
 java -jar target/FastStatAPI-0.0.1-SNAPSHOT.jar
 ```
 
