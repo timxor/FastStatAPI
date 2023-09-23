@@ -64,3 +64,35 @@ confirm maven is installed:
 mvn -v
 ```
 
+
+
+## API endpoints
+
+
+
+### 1
+
+
+example GET request to the endpoint:
+```
+curl -o sample.json http://localhost:3000/api/faststat
+```
+
+### 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

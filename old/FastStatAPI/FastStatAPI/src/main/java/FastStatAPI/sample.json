@@ -1,0 +1,224 @@
+{
+    "result": [
+        {
+            "id": 1,
+            "name": "Kevin Anthony",
+            "height": "6'10\"",
+            "number": "37",
+            "birthdate": "1997-11-20",
+            "PTS": 7,
+            "Reb": 3,
+            "AST": 2,
+            "TO": 1
+        },
+        {
+            "id": 2,
+            "name": "Avery Adams",
+            "height": "6'3\"",
+            "number": "11",
+            "birthdate": "1990-11-26",
+            "PTS": 423,
+            "Reb": 115,
+            "AST": 63,
+            "TO": 47
+        },
+        {
+            "id": 3,
+            "name": "Donald Cupp",
+            "height": "6'7\"",
+            "number": "12",
+            "birthdate": "1996-10-08",
+            "PTS": 6,
+            "Reb": 5,
+            "AST": 1,
+            "TO": 0
+        },
+        {
+            "id": 4,
+            "name": "Kent Corners",
+            "height": "6'5\"",
+            "number": "1",
+            "birthdate": "1993-02-18",
+            "PTS": 645,
+            "Reb": 142,
+            "AST": 111,
+            "TO": 62
+        },
+        {
+            "id": 5,
+            "name": "Alex Carpenter",
+            "height": "6'5\"",
+            "number": "4",
+            "birthdate": "1994-02-28",
+            "PTS": 349,
+            "Reb": 123,
+            "AST": 124,
+            "TO": 53
+        },
+        {
+            "id": 6,
+            "name": "Quinn Childs",
+            "height": "6'1\"",
+            "number": "28",
+            "birthdate": "1993-03-23",
+            "PTS": 224,
+            "Reb": 51,
+            "AST": 49,
+            "TO": 33
+        },
+        {
+            "id": 7,
+            "name": "Trey Downs",
+            "height": "6'4\"",
+            "number": "30",
+            "birthdate": "1991-07-15",
+            "PTS": 174,
+            "Reb": 46,
+            "AST": 14,
+            "TO": 9
+        },
+        {
+            "id": 8,
+            "name": "Anthony Anderson",
+            "height": "6'10\"",
+            "number": "3",
+            "birthdate": "1993-03-11",
+            "PTS": 1618,
+            "Reb": 577,
+            "AST": 200,
+            "TO": 154
+        },
+        {
+            "id": 9,
+            "name": "Jared Dillon",
+            "height": "6'6\"",
+            "number": "10",
+            "birthdate": "1985-07-10",
+            "PTS": 68,
+            "Reb": 52,
+            "AST": 28,
+            "TO": 8
+        },
+        {
+            "id": 10,
+            "name": "Manny Greenfield",
+            "height": "6'6\"",
+            "number": "14",
+            "birthdate": "1987-06-22",
+            "PTS": 547,
+            "Reb": 225,
+            "AST": 91,
+            "TO": 63
+        },
+        {
+            "id": 11,
+            "name": "Hills Lively",
+            "height": "6'4\"",
+            "number": "5",
+            "birthdate": "2000-11-25",
+            "PTS": 34,
+            "Reb": 7,
+            "AST": 6,
+            "TO": 6
+        },
+        {
+            "id": 12,
+            "name": "Noah Howard",
+            "height": "6'10\"",
+            "number": "39",
+            "birthdate": "1985-12-08",
+            "PTS": 517,
+            "Reb": 507,
+            "AST": 45,
+            "TO": 84
+        },
+        {
+            "id": 13,
+            "name": "Bryce Whitfield",
+            "height": "6'9\"",
+            "number": "23",
+            "birthdate": "1984-12-30",
+            "PTS": 1698,
+            "Reb": 525,
+            "AST": 684,
+            "TO": 261
+        },
+        {
+           "id": 14,
+            "name": "Kyle Kipper",
+            "height": "6'9\"",
+            "number": "0",
+            "birthdate": "1995-07-24",
+            "PTS": 782,
+            "Reb": 273,
+            "AST": 80,
+            "TO": 91
+        },
+        {
+            "id": 15,
+            "name": "Mitchell Simon",
+            "height": "7'0\"",
+            "number": "7",
+            "birthdate": "1988-01-19",
+            "PTS": 446,
+            "Reb": 390,
+            "AST": 37,
+            "TO": 55
+        },
+        {
+            "id": 16,
+            "name": "Micah Morris",
+            "height": "6'9\"",
+            "number": "88",
+            "birthdate": "1989-09-02",
+            "PTS": 74,
+            "Reb": 45,
+            "AST": 8,
+            "TO": 6
+        },
+        {
+            "id": 17,
+            "name": "William Freeman Jr.",
+            "height": "6'5\"",
+            "number": "21",
+            "birthdate": "1997-12-09",
+            "PTS": 0,
+            "Reb": 1,
+            "AST": 0,
+            "TO": 0
+        },
+        {
+            "id": 18,
+            "name": "Ronald Miller",
+            "height": "6'1\"",
+            "number": "9",
+            "birthdate": "1986-02-22",
+            "PTS": 342,
+            "Reb": 142,
+            "AST": 240,
+            "TO": 91
+        },
+        {
+            "id": 19,
+            "name": "Liam Smith",
+            "height": "6'6\"",
+            "number": "21",
+            "birthdate": "1985-09-09",
+            "PTS": 17,
+            "Reb": 5,
+            "AST": 3,
+            "TO": 4
+        },
+        {
+            "id": 20,
+            "name": "Ford Waters",
+            "height": "6'3\"",
+            "number": "18",
+            "birthdate": "1991-12-10",
+            "PTS": 83,
+            "Reb": 13,
+            "AST": 17,
+            "TO": 13
+        }
+    ]
+}
