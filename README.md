@@ -6,13 +6,10 @@ FastStatAPI
 
 
 ```
-unzip FastStatAPI.zip -d FastStatAPI
-
-spring init -a FastStatAPI -l java --build maven FastStatAPI
-
-cd FastStatAPI
-
+git clone https://github.com/timxor/FastStatAPI.git
+cd FastStatAPI/faststat-api
 mvn clean package
+java -jar target/FastStatAPI-0.0.1-SNAPSHOT.jar
 ```
 
 
