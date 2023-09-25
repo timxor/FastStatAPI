@@ -34,7 +34,7 @@ public class PlayerStatsService {
     private List<PlayerStats> readPlayerStatsFromFile() {
         String relativePath = "./faststat-api/src/main/resources/static/sample.json";
         Path absolutePath = Paths.get(relativePath).toAbsolutePath();
-        System.out.println("absolutePath = " + absolutePath.toString());
+//        System.out.println("absolutePath = " + absolutePath.toString());
         File jsonFile = new File(absolutePath.toString());
         List<PlayerStats> result = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -46,16 +46,5 @@ public class PlayerStatsService {
         }
         return result;
     }
-
-    private int calculateFastStat(PlayerStats playerStats) {
-        // Implement your fast stat calculation logic here
-        // You can access playerStats properties to perform the calculation
-        // Replace the following line with your actual calculation
-        int fastStat = 0;
-
-        // Example calculation:
-        // fastStat = playerStats.getSomeProperty() * 2;
-
-        return fastStat;
-    }
+    
 }

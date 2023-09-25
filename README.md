@@ -17,6 +17,22 @@ run the app:
 java -jar target/FastStatAPI-0.0.1-SNAPSHOT.jar
 ```
 
+open the browser or query the api from terminal:
+
+```
+http://localhost:8080/faststat
+```
+
+#### input file
+
+the [sample.json](./faststat-api/src/main/resources/static/sample.json) input file is used to seed the responses.
+
+it's located here:
+
+```/FastStatAPI/faststat-api/src/main/resources/static/sample.json```
+
+[./faststat-api/src/main/resources/static/sample.json](./faststat-api/src/main/resources/static/sample.json)
+
 ## API endpoints
 
 
