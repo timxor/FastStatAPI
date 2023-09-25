@@ -32,8 +32,9 @@ public class PlayerStatsService {
     }
 
     private List<PlayerStats> readPlayerStatsFromFile() {
-        String relativePath = "sample.json";
+        String relativePath = "./faststat-api/src/main/resources/static/sample.json";
         Path absolutePath = Paths.get(relativePath).toAbsolutePath();
+        System.out.println("absolutePath = " + absolutePath.toString());
         File jsonFile = new File(absolutePath.toString());
         List<PlayerStats> result = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
