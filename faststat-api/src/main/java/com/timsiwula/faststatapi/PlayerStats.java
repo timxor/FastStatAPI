@@ -1,9 +1,8 @@
 // PlayerStats.java
 
 package src.main.java.com.timsiwula.faststatapi;
-
 import java.util.Objects;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -28,15 +27,19 @@ class PlayerStats {
   private String birthdate;
   
   // 5 PTS, int
+  @JsonProperty("PTS")
   private int pts;
   
   // 6 Reb, int
+  @JsonProperty("Reb")
   private int reb;
   
   // 7 AST, int
+  @JsonProperty("AST")
   private int ast;
   
   // 8 TO, int
+  @JsonProperty("TO")
   private int to;
   
   // 9 FastStat, int
