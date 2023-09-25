@@ -22,12 +22,12 @@ public class PlayerStatsService {
 
         // Calculate FastStat for each player and add it to the PlayerStats objects
         for (PlayerStats player : playerStatsList) {
-            int fastStat = calculateFastStat(player);
-            player.setFastStat(fastStat);
+            int score = player.calculateFastStatScore();
+            player.setFastStat(score);
         }
 
         // Sort the list by FastStat in descending order
-        playerStatsList.sort(Comparator.comparingInt(PlayerStats::getFastStat).reversed());
+        playerStatsList.sort(Comparator.comparingInt(PlayerStats::getFastStatScore).reversed());
         return playerStatsList;
     }
 

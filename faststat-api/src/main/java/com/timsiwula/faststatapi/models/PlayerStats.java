@@ -1,12 +1,10 @@
-// PlayerStats.java
-
 package src.main.java.com.timsiwula.faststatapi.models;
 
+import java.time.Period;
+import java.time.LocalDate;
 import java.util.Objects;
 import javax.persistence.Entity;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 @Entity
 public class PlayerStats {
     @JsonProperty("id")
@@ -51,7 +49,7 @@ public class PlayerStats {
 //        this.to = to;
 //        this.fastStat = fastStat;
 //    }
-
+    
     public int getId() {
         return this.id;
     }
@@ -88,17 +86,80 @@ public class PlayerStats {
         return this.to;
     }
 
-    public int getFastStat() {
+    public int getFastStatScore() {
         return this.fastStat;
     }
 
+    public int calculateFastStatScore() {
+        
+        int score = 0;
+        // get the baseline score from (total points + rebounds + assist) - turnovers
+        int baseLineScore = getBaselinePoints();
+        
+        // get 10 points for every inch over 6 feet
+        int tallPoints = getTallPoints();
+        
+        // get 10 points if the players first and last name is an alliterative name
+        // an alliterative name is a name in which both the first and last names begin with the same letter
+        int alliterativeNamePoints = getAlliterativeNamePoints();
+        
+        // get the value of their jersey number and their age added as points
+        int jerseyAndAgePoints = getJerseyPoints() + getAgePoints();
+        
+        // aggregate all points
+        score = baseLineScore + tallPoints + alliterativeNamePoints + jerseyAndAgePoints;
+        
+        return score;
+    }
+    
+    public int getBaselinePoints() {
+        return (this.getPts() + this.getReb() + this.getAst()) - this.getTo();
+    }
+    
+    public int getTallPoints() {
+        String[] parts = this.getHeight().split("'");
+        int feet = Integer.parseInt(parts[0]);
+        if (feet <= 5) return 0;
+        int inches = Integer.parseInt(parts[1].replaceAll("\"", ""));
+        return (feet - 6) * 12 + inches * 10;
+    }
 
-    // SETTERS
+    public int getJerseyPoints() {
+        return Integer.parseInt(this.getNumber());
+    }
 
-    // public void setId(Long id) {
-    //   this.id = id;
-    // }
+    public int getAgePoints() {
+        LocalDate birthDate = LocalDate.parse(this.getBirthdate());
+        LocalDate currentDate = LocalDate.now();
+        Period period = Period.between(birthDate, currentDate);
+        return period.getYears();
+    }
+    
+    public int getAlliterativeNamePoints() {
+        int score = 0;
+        String name = getName().trim();
+        
+        if (name.isEmpty() || !name.contains(" ")) {
+            return score;
+        }
 
+        String[] names = name.split(" ");
+
+        if (names.length != 2 || names[0].isEmpty() || names[1].isEmpty()) {
+            return score;
+        }
+
+        // Get the first character of both names and compare them
+        char firstLetterFirstName = names[0].charAt(0);
+        char firstLetterLastName = names[1].charAt(0);
+
+        if (Character.toLowerCase(firstLetterFirstName) == Character.toLowerCase(firstLetterLastName)) {
+            score += 10;
+        }
+        
+        return score;
+    }
+    
     public void setId(int id) {
         this.id = id;
     }

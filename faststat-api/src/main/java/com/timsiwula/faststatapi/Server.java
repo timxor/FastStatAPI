@@ -8,5 +8,6 @@ public class Server {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Server.class, args);
+		System.out.println("\n\napi server running at:  http://localhost:8080/faststat   \n\n");
 	}
 }

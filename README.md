@@ -1,24 +1,50 @@
 # FastStatAPI
+
 FastStatAPI
 
+## building and running the app
 
-## building and compiling the app
-
-
+build:
 ```
 git clone https://github.com/timxor/FastStatAPI.git
 cd FastStatAPI/faststat-api
 mvn clean package
+```
+
+run the app:
+```
+# ls -lb target/*.jar
 java -jar target/FastStatAPI-0.0.1-SNAPSHOT.jar
 ```
 
+## API endpoints
 
-## running the app
 
+### endpoint 1:
+
+with jq pretty print:
 ```
-ls -lb target/*.jar
-java -jar target/FastStatAPI-0.0.1-SNAPSHOT.jar
+curl http://localhost:8080/faststat | jq | less
 ```
+
+with httpie:
+```
+http :8080/faststat
+```
+
+or with curl:
+```
+curl http://localhost:8080/faststat
+```
+
+
+![endpoint1.png](endpoint1.png)
+
+
+
+### endpoint 2
+
+
 
 
 
@@ -60,49 +86,5 @@ confirm maven is installed:
 ```
 mvn -v
 ```
-
-
-
-## API endpoints
-
-
-
-### 1
-
-
-example GET request to the endpoint:
-```
-
-# with httpie
-
-http :8080/faststat
-
-
-# or with curl:
-
-curl http://localhost:8080/faststat
-
-
-# with jq pretty print:
-
-curl http://localhost:8080/faststat | jq
-```
-
-### 2
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
