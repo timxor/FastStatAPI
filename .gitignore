@@ -1,78 +1,32 @@
-*#
-*.iml
-*.ipr
-*.iws
-*.jar
-*.sw?
-*~
-.#*
-.*.md.html
-.DS_Store
-.attach_pid*
-.classpath
-.factorypath
-.gradle
-.metadata
-.project
-.recommenders
-.settings
-.springBeans
-.vscode
-/code
-MANIFEST.MF
-_site/
-activemq-data
-bin
-build
-!/**/src/**/bin
-!/**/src/**/build
-build.log
-dependency-reduced-pom.xml
-dump.rdb
-interpolated*.xml
-lib/
-manifest.yml
-out
-overridedb.*
-target
-.flattened-pom.xml
-secrets.yml
-.gradletasknamecache
-.sts4-cache
+# Spring Boot
+target/
+!.mvn/wrapper/maven-wrapper.jar
 
-# IDEA
+# IntelliJ IDEA
 .idea/
-out/
-output/
-**/build/
-
-**/gradle_build/
 *.iml
-**/*.iml
-*.ipr
 *.iws
+*.ipr
 
+# Eclipse
+.classpath
+.project
+.settings/
 
-# OSX
-.DS_Store
-.AppleDouble
-.LSOverride
+# Gradle
+.gradle/
+build/
 
-## Java
-# either the 3rd party diff or IDEA:
-*.java.orig
-
-# Package Files
-**/build/libs/*.jar
-*.war
-*.ear
-
-#Gradle
-.gradle
-*/.gradle
-
-# Logging
-*.log
-*.log.gz
-*.log-*.gz
+# Logs
 logs/
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Dependency directories
+/bin/
+/build/
+/lib/
+/out/
