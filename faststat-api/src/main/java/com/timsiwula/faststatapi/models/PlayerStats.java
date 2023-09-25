@@ -1,8 +1,11 @@
 package src.main.java.com.timsiwula.faststatapi.models;
 
+import java.util.HashMap;
+import java.util.Map;
 import javax.persistence.Entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonPropertyOrder({ "id", "name", "height", "number", "birthdate", "PTS", "Reb", "AST", "TO", "FastStat" })
@@ -38,6 +41,17 @@ public class PlayerStats {
 
     @JsonProperty("FastStat")
     private int fastStat;
+
+    private Map<String, Object> dynamicProperties = new HashMap<>();
+
+    @JsonAnyGetter
+    public Map<String, Object> getDynamicProperties() {
+        return this.dynamicProperties;
+    }
+
+    public void setDynamicProperty(String key, Object value) {
+        this.dynamicProperties.put(key, value);
+    }
 
     public String getName() {
         return this.name;
@@ -78,5 +92,8 @@ public class PlayerStats {
     public void setFastStat(int fastStat) {
         this.fastStat = fastStat;
     }
-    
+
+    public Object getId() {
+        return this.id;
+    }
 }

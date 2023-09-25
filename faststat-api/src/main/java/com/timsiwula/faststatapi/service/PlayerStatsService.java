@@ -4,9 +4,7 @@ import src.main.java.com.timsiwula.faststatapi.models.PlayerStats;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -31,6 +29,37 @@ public class PlayerStatsService {
         // Sort the list by FastStat in descending order
         playerStatsList.sort(Comparator.comparingInt(PlayerStats::getFastStat).reversed());
         return playerStatsList;
+    }
+    
+    public List<PlayerStats> defineCustomFormula(String postRequestPayload) {
+        String[] parts = postRequestPayload.split("=", 2);
+
+        String formulaName = parts[0].trim();
+        String formulaEquation = parts[1].trim();
+        playerStatsList = readPlayerStatsFromFile();
+
+
+        // Calculate FastStat for each player and add it to the PlayerStats objects
+        for (PlayerStats player : playerStatsList) {
+            int score = calculateFastStatScore(player);
+            player.setFastStat(score);
+
+            // Calculate custom formula for each player
+            double customScore = evaluate(formulaEquation, player);
+            player.setDynamicProperty(formulaName, customScore);
+        }
+
+        // Sort the list by FastStat in descending order
+        playerStatsList.sort(Comparator.comparingInt(PlayerStats::getFastStat).reversed());
+        return playerStatsList;
+    }
+
+    public double evaluate(String formula, PlayerStats player) {
+        formula = formula.replace("PTS", String.valueOf(player.getPts()))
+                .replace("REB", String.valueOf(player.getReb()))
+                .replace("AST", String.valueOf(player.getAst()))
+                .replace("TO", String.valueOf(player.getTo()));
+        return new org.mariuszgromada.math.mxparser.Expression(formula).calculate();
     }
 
     private List<PlayerStats> readPlayerStatsFromFile() {

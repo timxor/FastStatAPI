@@ -22,6 +22,8 @@ open the browser or query the api from terminal:
 ```
 curl http://localhost:8080/faststat | jq | less
 
+curl -X POST -H "Content-Type: text/plain" -d "MyFormula = (PTS+(REB-AST))/2" http://localhost:8080/faststat | jq
+
 http://localhost:8080/faststat
 ```
 
@@ -57,9 +59,11 @@ curl http://localhost:8080/faststat
 
 ### endpoint 2
 
+```
+curl -X POST -H "Content-Type: text/plain" -d "MyFormula = (PTS+(REB-AST))/2" http://localhost:8080/faststat | jq
+```
 
-
-
+![endpoint2.png](endpoint2.png)
 
 ## java, springboot and maven version
 
