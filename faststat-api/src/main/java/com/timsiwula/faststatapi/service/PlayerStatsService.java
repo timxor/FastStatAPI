@@ -1,0 +1,60 @@
+package src.main.java.com.timsiwula.faststatapi.service;
+
+import src.main.java.com.timsiwula.faststatapi.models.PlayerStats;
+
+import java.util.List;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import org.springframework.stereotype.Service;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@Service
+public class PlayerStatsService {
+    private List<PlayerStats> playerStatsList = new ArrayList<>();
+    public List<PlayerStats> getAllPlayerStats(){
+        playerStatsList = readPlayerStatsFromFile();
+
+        // Calculate FastStat for each player and add it to the PlayerStats objects
+        for (PlayerStats player : playerStatsList) {
+            int fastStat = calculateFastStat(player);
+            player.setFastStat(fastStat);
+        }
+
+        // Sort the list by FastStat in descending order
+        playerStatsList.sort(Comparator.comparingInt(PlayerStats::getFastStat).reversed());
+        return playerStatsList;
+    }
+
+    private List<PlayerStats> readPlayerStatsFromFile() {
+        String relativePath = "sample.json";
+        Path absolutePath = Paths.get(relativePath).toAbsolutePath();
+        File jsonFile = new File(absolutePath.toString());
+        List<PlayerStats> result = new ArrayList<>();
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            JsonNode list = objectMapper.readTree(jsonFile).path("result");
+            result = Arrays.asList(objectMapper.treeToValue(list,PlayerStats[].class));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    private int calculateFastStat(PlayerStats playerStats) {
+        // Implement your fast stat calculation logic here
+        // You can access playerStats properties to perform the calculation
+        // Replace the following line with your actual calculation
+        int fastStat = 0;
+
+        // Example calculation:
+        // fastStat = playerStats.getSomeProperty() * 2;
+
+        return fastStat;
+    }
+}

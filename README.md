@@ -72,7 +72,20 @@ mvn -v
 
 example GET request to the endpoint:
 ```
-curl -o sample.json http://localhost:3000/api/faststat
+
+# with httpie
+
+http :8080/faststat
+
+
+# or with curl:
+
+curl http://localhost:8080/faststat
+
+
+# with jq pretty print:
+
+curl http://localhost:8080/faststat | jq
 ```
 
 ### 2
