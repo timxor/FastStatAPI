@@ -20,6 +20,8 @@ java -jar target/FastStatAPI-0.0.1-SNAPSHOT.jar
 open the browser or query the api from terminal:
 
 ```
+curl http://localhost:8080/faststat | jq | less
+
 http://localhost:8080/faststat
 ```
 
@@ -41,11 +43,6 @@ it's located here:
 with jq pretty print:
 ```
 curl http://localhost:8080/faststat | jq | less
-```
-
-with httpie:
-```
-http :8080/faststat
 ```
 
 or with curl:

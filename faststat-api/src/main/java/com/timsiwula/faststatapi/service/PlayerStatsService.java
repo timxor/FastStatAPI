@@ -2,8 +2,9 @@ package src.main.java.com.timsiwula.faststatapi.service;
 
 import src.main.java.com.timsiwula.faststatapi.models.PlayerStats;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
-import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.io.File;
@@ -16,35 +17,112 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class PlayerStatsService {
+    public static final String SAMPLE_JSON_FILE_PATH = "./src/main/resources/static/sample.json";
     private List<PlayerStats> playerStatsList = new ArrayList<>();
     public List<PlayerStats> getAllPlayerStats(){
         playerStatsList = readPlayerStatsFromFile();
 
         // Calculate FastStat for each player and add it to the PlayerStats objects
         for (PlayerStats player : playerStatsList) {
-            int score = player.calculateFastStatScore();
+            int score = calculateFastStatScore(player);
             player.setFastStat(score);
         }
 
         // Sort the list by FastStat in descending order
-        playerStatsList.sort(Comparator.comparingInt(PlayerStats::getFastStatScore).reversed());
+        playerStatsList.sort(Comparator.comparingInt(PlayerStats::getFastStat).reversed());
         return playerStatsList;
     }
 
     private List<PlayerStats> readPlayerStatsFromFile() {
-        String relativePath = "./faststat-api/src/main/resources/static/sample.json";
+        String relativePath = SAMPLE_JSON_FILE_PATH;
         Path absolutePath = Paths.get(relativePath).toAbsolutePath();
-//        System.out.println("absolutePath = " + absolutePath.toString());
         File jsonFile = new File(absolutePath.toString());
         List<PlayerStats> result = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
+
         try {
-            JsonNode list = objectMapper.readTree(jsonFile).path("result");
-            result = Arrays.asList(objectMapper.treeToValue(list,PlayerStats[].class));
+            JsonNode root = objectMapper.readTree(jsonFile);
+            JsonNode list = root.path("result");
+            if (list.isArray()) {
+                for (JsonNode node : list) {
+                    PlayerStats playerStats = objectMapper.treeToValue(node, PlayerStats.class);
+                    result.add(playerStats);
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public int calculateFastStatScore(PlayerStats player) {
+
+        int score = 0;
+        // get the baseline score from (total points + rebounds + assist) - turnovers
+        int baseLineScore = getBaselinePoints(player);
+
+        // get 10 points for every inch over 6 feet
+        int tallPoints = getTallPoints(player);
+
+        // get 10 points if the players first and last name is an alliterative name
+        // an alliterative name is a name in which both the first and last names begin with the same letter
+        int alliterativeNamePoints = getAlliterativeNamePoints(player);
+
+        // get the value of their jersey number and their age added as points
+        int jerseyAndAgePoints = getJerseyPoints(player) + getAgePoints(player);
+
+        // aggregate all points
+        score = baseLineScore + tallPoints + alliterativeNamePoints + jerseyAndAgePoints;
+
+        return score;
+    }
+
+    public int getBaselinePoints(PlayerStats player) {
+        return (player.getPts() + player.getReb() + player.getAst()) - player.getTo();
+    }
+
+    public int getTallPoints(PlayerStats player) {
+        String[] parts = player.getHeight().split("'");
+        int feet = Integer.parseInt(parts[0]);
+        if (feet <= 5) return 0;
+        int inches = Integer.parseInt(parts[1].replaceAll("\"", ""));
+        return (feet - 6) * 12 + inches * 10;
+    }
+
+    public int getJerseyPoints(PlayerStats player) {
+        return Integer.parseInt(player.getNumber());
+    }
+
+    public int getAgePoints(PlayerStats player) {
+        LocalDate birthDate = LocalDate.parse(player.getBirthdate());
+        LocalDate currentDate = LocalDate.now();
+        Period period = Period.between(birthDate, currentDate);
+        return period.getYears();
+    }
+
+    public int getAlliterativeNamePoints(PlayerStats player) {
+        int score = 0;
+        String name = player.getName().trim();
+
+        if (name.isEmpty() || !name.contains(" ")) {
+            return score;
+        }
+
+        String[] names = name.split(" ");
+
+        if (names.length != 2 || names[0].isEmpty() || names[1].isEmpty()) {
+            return score;
+        }
+
+        // Get the first character of both names and compare them
+        char firstLetterFirstName = names[0].charAt(0);
+        char firstLetterLastName = names[1].charAt(0);
+
+        if (Character.toLowerCase(firstLetterFirstName) == Character.toLowerCase(firstLetterLastName)) {
+            score += 10;
+        }
+
+        return score;
     }
     
 }
